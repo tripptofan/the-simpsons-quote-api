@@ -13,6 +13,10 @@ const quoteSchema = new mongoose.Schema({
     characterDirection: {
         type: String,
         required: true
+    },
+    image: {
+        type: String,
+        required: true
     }
 })
 
