@@ -15,11 +15,11 @@ MongoClient.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true
  },
    
- (err, database) => {
+ (err, db) => {
     //...start the server
   
     app.get('/quotes', (req, res) => {
-        database.collection('quotes').aggregate([{ $project: {_id: 0, quote: 1, character: 1, characterDirection: 1}}], (err, doc) => {
+        db.collection('quotes').aggregate([{ $project: {_id: 0, quote: 1, character: 1, characterDirection: 1}}], (err, doc) => {
             res.setHeader('Content-Type', 'application/json')
             res.header("Access-Control-Allow-Origin", "*")
             res.header("Access-Control-Allow-Headers", "origin, X-Requested-With, Content-Type, Accept")
