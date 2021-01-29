@@ -9,7 +9,7 @@ const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 const Quotes = require('./models/quotes')
 
-app.use(express.static(__dirname + 'public'))
+app.use(express.static(__dirname + '/public'))
 // app.use(expressLayouts)
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
