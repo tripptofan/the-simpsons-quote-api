@@ -30,7 +30,6 @@ MongoClient.connect(process.env.DB_URL, {
 
         
     })
-
+    app.listen(process.env.PORT || 3030,  console.log('server is running'))
 })
 
-app.listen(process.env.PORT || 3030,  console.log('server is running'))
