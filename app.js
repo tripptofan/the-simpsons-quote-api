@@ -4,31 +4,46 @@ if(process.env.NODE_ENV !== 'production'){
 
 const express = require('express')
 const app = express()
-const MongoClient = require('mongodb').MongoClient
+const mongoose = require('mongoose')
+const expressLayouts = require('express-ejs-layouts')
+const bodyParser = require('body-parser')
+const Quotes = require('./models/quotes')
+
+app.use(express.static('public'))
+app.use(expressLayouts)
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
+
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
+app.set('layout', 'layouts/layout')
 
 
-app.use(express.static(__dirname + '/public'))
+mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+const db = mongoose.connection
+db.on('error', error => console.error(error))
+db.once('open', () => console.log('connected to db'))
 
 
-MongoClient.connect(process.env.DATABASE_URL, 
-     
- (err, db) => {
-    //...start the server
-  
-    app.get('/quotes', (req, res) => {
-        console.log('hey')
-        db.collection('quotes').aggregate([{ $project: {_id: 0, quote: 1, character: 1, characterDirection: 1}}], (err, doc) => {
-            res.setHeader('Content-Type', 'application/json')
-            res.header("Access-Control-Allow-Origin", "*")
-            res.header("Access-Control-Allow-Headers", "origin, X-Requested-With, Content-Type, Accept")
-
-            res.send(doc)
-            console.log(err)
-        })
 
 
-        
-    })
-    app.listen(process.env.PORT || 3030,  console.log('server is running'))
+app.get('/', async (req, res) => {
+    res.render('index')
 })
 
+app.get('/quotes', async (req, res) => {
+    try {
+        const quotes = await Quotes.find({})
+        res.send(quotes)
+    } catch (err) {
+        console.error(message.err)
+    }
+})
+
+
+
+
+
+app.listen(process.env.PORT || 3700)
