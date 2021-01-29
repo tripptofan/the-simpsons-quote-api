@@ -10,15 +10,13 @@ const MongoClient = require('mongodb').MongoClient
 app.use(express.static(__dirname + '/public'))
 
 
-MongoClient.connect(process.env.DATABASE_URL, { 
-    useUnifiedTopology: true,
-    useNewUrlParser: true
- },
-   
+MongoClient.connect(process.env.DATABASE_URL, 
+     
  (err, db) => {
     //...start the server
   
     app.get('/quotes', (req, res) => {
+        console.log('hey')
         db.collection('quotes').aggregate([{ $project: {_id: 0, quote: 1, character: 1, characterDirection: 1}}], (err, doc) => {
             res.setHeader('Content-Type', 'application/json')
             res.header("Access-Control-Allow-Origin", "*")
