@@ -10,8 +10,10 @@ const MongoClient = require('mongodb').MongoClient
 app.use(express.static(__dirname + '/public'))
 
 
-MongoClient.connect(process.env.DB_URL,
-    { useUnifiedTopology: true },
+MongoClient.connect(process.env.DB_URL, { 
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+ },
    
  (err, database) => {
     //...start the server
@@ -26,8 +28,9 @@ MongoClient.connect(process.env.DB_URL,
         })
 
 
-        app.listen(process.env.PORT || 3030,  console.log('server is running'))
+        
     })
 
 })
 
+app.listen(process.env.PORT || 3030,  console.log('server is running'))
