@@ -20,9 +20,9 @@ db.on('error', error => console.error(error))
 db.once('open', () => console.log('connected to db'))
 
 
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'build', 'index.html'))
-// })
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
 
 app.get('/quotes', async (req, res) => {
     try {
@@ -33,4 +33,4 @@ app.get('/quotes', async (req, res) => {
     }
 })
 
-app.listen(3700)
+app.listen(process.env.PORT || 3700)
