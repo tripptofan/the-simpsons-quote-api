@@ -8,8 +8,8 @@ const mongoose = require('mongoose')
 const Quotes = require('./models/quotes')
 const path = require('path')
 
-// app.use(express.static(__dirname + '/public'))
-app.use(express.static(path.join(__dirname, 'client')))
+app.use(express.static(__dirname + '/public'))
+
 
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
@@ -20,9 +20,7 @@ db.on('error', error => console.error(error))
 db.once('open', () => console.log('connected to db'))
 
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build/index.html'))
-})
+
 
 app.get('/quotes', async (req, res) => {
     try {
