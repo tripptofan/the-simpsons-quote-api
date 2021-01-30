@@ -6,6 +6,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const Quotes = require('./models/quotes')
+const path = require('path')
 
 app.use(express.static(__dirname + '/public'))
 
@@ -18,13 +19,17 @@ db.on('error', error => console.error(error))
 db.once('open', () => console.log('connected to db'))
 
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
 app.get('/quotes', async (req, res) => {
     try {
         const quotes = await Quotes.find({})
         res.send(quotes)
     } catch (err) {
-        console.error(message.err)
+        console.error(err.message)
     }
 })
 
-app.listen(process.env.PORT || 3700)
+app.listen(3700)
