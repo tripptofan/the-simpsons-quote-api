@@ -9,7 +9,11 @@ const Quotes = require('./models/quotes')
 const path = require('path')
 
 app.use(express.static(__dirname + '/public'))
-
+app.use( (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'GET')
+    next();
+})
 
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
