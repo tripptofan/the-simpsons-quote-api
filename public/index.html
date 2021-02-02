@@ -4,12 +4,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Simpsons Quote API</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+}
+html {
+width: 100%;
+height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+  background-color: #f5d6f5;
+  font-family: 'Roboto', sans-serif;
+  background-image: url('./starburstbackground.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left center ;
+
+}
+.header{
+display: flex;
+align-items: center;
+flex-direction: column;
+ margin-bottom: 50px;
+width: 100%;
+    max-width: 800px;
+  
+
+}
+.header h1{
+    font-size: 1.5em;
+}
+.logo{
+width:100%;
+
+}
+.content-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  max-width: 1024px;
+  justify-content:space-evenly;
+  align-items: center;
+  position: relative;
+}
+.mrsparkle-container{
+ top: 0;
+    position: relative;
+    width: 250px;
+    text-align: center;
+   
+}
+.mrsparkle{
+    position: relative;
+
+    height: 200px;
+    width: auto;
+    animation: float 3s ease-in-out alternate infinite;
+    z-index: 1;
+}
+@keyframes float{
+   0%{
+       top: 0;
+   }
+   100%{
+       top: 25px;
+   }
+}
+.info-container{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+margin-bottom: 20px;
+padding:0 20px 0 20px;
+   
+}
+.info-container input{
+padding: 5px;
+display: inline-block;
+width: 100%;
+max-width: 420px;
+font-size: 14px;
+}
+.info-container p{
+font-size: 14px;
+margin-bottom: 15px;
+}
+
+/*Stars*/
+.stars{
+    position: absolute;
+    z-index: 0;
+}
+#star1{
+left: 25px;
+top: 40px;
+animation: bigstars 2s ease-in-out alternate infinite;
+}
+#star2{
+left: 20px;
+animation: smallstars 2s ease-in-out alternate infinite;
+}
+#star3{
+  top: -10px;
+    animation: smallstars 2s ease-in-out alternate infinite;
+}
+#star4{
+bottom: 25px;
+right:15px;
+animation: bigstars 2s ease-in-out alternate infinite;
+}
+#star5{
+    bottom: 15px;
+right:0;
+animation: smallstars 2s ease-in-out alternate infinite;
+}
+#star6{
+    bottom: -10px;
+right:40px;
+animation: smallstars 2s ease-in-out alternate infinite;
+}
+
+@keyframes bigstars{
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(.5);
+    }
+}
+@keyframes smallstars {
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(1.5);
+    }
+}
+@media only screen and (max-width: 600px){
+    .content-container{
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .logo{
+        width: 200px;
+    }
+    .info-container{
+        margin-bottom: 80px;
+    }
+}
+
+    </style>
 </head>
 <body>
-    
-    <h1>The Simpsons Quote API</h1>
-    <p>Make GET requests to the link below to receive all quotes</p>
-    <input readonly value="https://the-simpsons-quote-api.herokuapp.com/quotes">
+    <div class='header'>
+         <img class='logo' src='./The_logo_simpsons_yellow.png' alt='The Simpsons'/>
+    <h1>Quote API</h1>
+    </div>
+   
+    <div class='content-container'>
+
+        <div class='mrsparkle-container'>
+<img id='star1' class='stars' src='./star1.png'/>
+<img id='star2' class='stars' src='./star2.png'/>
+<img id='star3' class='stars' src='./star2.png'/>
+<img class='mrsparkle' src='./mrsparkle.png' alt='Mr. Sparkle'/>
+<img id='star4' class='stars' src='./star1.png'/>
+<img id='star5' class='stars' src='./star2.png'/>
+<img id='star6' class='stars' src='./star2.png'/>
+   </div>
+
+
+
+        <div class='info-container'>
+            <p>Make <b>GET</b> requests to the link below to receive all quotes</p>
+            <input readonly value="https://the-simpsons-quote-api.herokuapp.com/quotes">
+        </div>
+
+
+    </div>
+
    
 </body>
 </html>
