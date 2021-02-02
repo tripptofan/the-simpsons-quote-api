@@ -35,4 +35,10 @@ app.get('/quotes', async (req, res) => {
     }
 })
 
+app.get('/random', async (req, res) => {
+    let quotes = await Quotes.find({})
+    let num = Math.floor(Math.random() * quotes.length)
+    res.send(quotes[num])
+})
+
 app.listen(process.env.PORT || 3700)
