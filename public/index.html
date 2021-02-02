@@ -85,7 +85,7 @@ width:100%;
  display: flex;
  flex-direction: column;
  justify-content: center;
- align-items: center;
+ 
 margin-bottom: 20px;
 padding:0 20px 0 20px;
    
@@ -100,6 +100,8 @@ font-size: 14px;
 .info-container p{
 font-size: 14px;
 margin-bottom: 15px;
+margin-top: 20px;
+
 }
 
 /*Stars*/
@@ -188,8 +190,10 @@ animation: smallstars 2s ease-in-out alternate infinite;
 
 
         <div class='info-container'>
-            <p>Make <b>GET</b> requests to the link below to receive all quotes</p>
+            <p>Request with <b>/quotes</b> to receive ALL quotes.</p>
             <input readonly value="https://the-simpsons-quote-api.herokuapp.com/quotes">
+            <p>Request with <b>/random</b> to receive one random quotes.</p>
+            <input readonly value="https://the-simpsons-quote-api.herokuapp.com/random">
         </div>
 
 
