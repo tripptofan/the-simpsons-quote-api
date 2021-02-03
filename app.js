@@ -31,7 +31,7 @@ app.get('/quotes', async (req, res) => {
         const quotes = await Quotes.find({})
         res.send(quotes)
     } catch (err) {
-        console.error(err.message)
+       res.send(err)
     }
 })
 
